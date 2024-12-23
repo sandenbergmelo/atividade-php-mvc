@@ -41,5 +41,3 @@ class Connection
         return self::$instance->connection;
     }
 }
-
-$conn = Connection::getConnection();
