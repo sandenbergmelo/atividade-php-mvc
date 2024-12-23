@@ -24,7 +24,6 @@ function dotEnv(string $filePath): void
 
         $key = trim($key);
         $value = trim($value);
-        echo $key . ' ' . $value . "\n";
 
         putenv("$key=$value");
         $_ENV[$key] = $value;
