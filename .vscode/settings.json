@@ -1,0 +1,31 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "cSpell.words": [
+        "celula",
+        "descricao",
+        "duracao",
+        "ERRMODE",
+        "horario",
+        "metodo",
+        "nasc",
+        "servico",
+        "servicos",
+        "whatsapp"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Barber",
+            "database": "barber2men",
+            "username": "docker",
+            "password": "docker"
+        }
+    ],
+}
