@@ -18,7 +18,7 @@ class CompraController
 
     public function index()
     {
-        $compras = $this->compraDAO->getAll();
+        $compras = $this->compraDAO->listarTudo();
         $_SESSION['compras'] = $compras;
 
         header("Location: ../view/compra/mostrar_tudo.php");
@@ -31,7 +31,7 @@ class CompraController
 
     public function show(int $id)
     {
-        $compra = $this->compraDAO->getById($id);
+        $compra = $this->compraDAO->buscar($id);
         $_SESSION['compra'] = $compra;
 
         header("Location: ../view/compra/mostrar_registro.php?id=$id");
@@ -61,9 +61,9 @@ class CompraController
         $this->compra->setHorario($horario);
         $this->compra->setQtd($qtd);
 
-        $resp = $this->compraDAO->insert($this->compra);
+        $resp = $this->compraDAO->inserir($this->compra);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao inserir compra!';
             return;
         }
@@ -91,9 +91,9 @@ class CompraController
         $this->compra->setHorario($horario);
         $this->compra->setQtd($qtd);
 
-        $resp = $this->compraDAO->update($this->compra);
+        $resp = $this->compraDAO->alterar($this->compra);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao atualizar compra!';
             return;
         }
@@ -103,9 +103,9 @@ class CompraController
 
     public function delete(int $id)
     {
-        $resp = $this->compraDAO->delete($id);
+        $resp = $this->compraDAO->excluir($id);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao deletar compra!';
             return;
         }

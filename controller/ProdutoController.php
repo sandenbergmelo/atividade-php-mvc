@@ -18,7 +18,7 @@ class ProdutoController
 
     public function index()
     {
-        $produtos = $this->produtoDAO->getAll();
+        $produtos = $this->produtoDAO->listarTudo();
         $_SESSION['produtos'] = $produtos;
 
         header("Location: ../view/produto/mostrar_tudo.php");
@@ -31,7 +31,7 @@ class ProdutoController
 
     public function show(int $id)
     {
-        $produto = $this->produtoDAO->getById($id);
+        $produto = $this->produtoDAO->buscar($id);
         $_SESSION['produto'] = $produto;
 
         header("Location: ../view/produto/mostrar_registro.php?id=$id");
@@ -59,9 +59,9 @@ class ProdutoController
         $this->produto->setMarca($marca);
         $this->produto->setCategoria($categoria);
 
-        $resp = $this->produtoDAO->insert($this->produto);
+        $resp = $this->produtoDAO->inserir($this->produto);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao inserir produto!';
             return;
         }
@@ -87,9 +87,9 @@ class ProdutoController
         $this->produto->setMarca($marca);
         $this->produto->setCategoria($categoria);
 
-        $resp = $this->produtoDAO->update($this->produto);
+        $resp = $this->produtoDAO->alterar($this->produto);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao atualizar produto!';
             return;
         }
@@ -99,9 +99,9 @@ class ProdutoController
 
     public function delete(int $id)
     {
-        $resp = $this->produtoDAO->delete($id);
+        $resp = $this->produtoDAO->excluir($id);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao deletar produto!';
             return;
         }

@@ -18,7 +18,7 @@ class ClienteController
 
     public function index()
     {
-        $clientes = $this->clienteDAO->getAll();
+        $clientes = $this->clienteDAO->listarTudo();
         $_SESSION['clientes'] = $clientes;
 
         header("Location: ../view/cliente/mostrar_tudo.php");
@@ -31,7 +31,7 @@ class ClienteController
 
     public function show(int $id)
     {
-        $cliente = $this->clienteDAO->getById($id);
+        $cliente = $this->clienteDAO->buscar($id);
         $_SESSION['cliente'] = $cliente;
 
         header("Location: ../view/cliente/mostrar_registro.php?id=$id");
@@ -65,9 +65,9 @@ class ClienteController
         $this->cliente->setNum($num);
         $this->cliente->setBairro($bairro);
 
-        $resp = $this->clienteDAO->insert($this->cliente);
+        $resp = $this->clienteDAO->inserir($this->cliente);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao inserir cliente!';
             return;
         }
@@ -99,9 +99,9 @@ class ClienteController
         $this->cliente->setNum($num);
         $this->cliente->setBairro($bairro);
 
-        $resp = $this->clienteDAO->update($this->cliente);
+        $resp = $this->clienteDAO->alterar($this->cliente);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao atualizar cliente!';
             return;
         }
@@ -111,9 +111,9 @@ class ClienteController
 
     public function delete(int $id)
     {
-        $resp = $this->clienteDAO->delete($id);
+        $resp = $this->clienteDAO->excluir($id);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao deletar cliente!';
             return;
         }

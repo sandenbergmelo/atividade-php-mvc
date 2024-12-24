@@ -12,7 +12,7 @@ class AgendamentoDAO
         $this->connection = Connection::getConnection();
     }
 
-    public function insert(Agendamento $agendamento): string
+    public function inserir(Agendamento $agendamento): bool
     {
         $sql = "INSERT INTO agendamentos (cliente_id, servico_id, data, horario, duracao, status)
                 VALUES (:cliente_id, :servico_id, :data, :horario, :duracao, :status)";
@@ -24,12 +24,11 @@ class AgendamentoDAO
         $stmt->bindParam(':horario', $agendamento->getHorario());
         $stmt->bindParam(':duracao', $agendamento->getDuracao());
         $stmt->bindParam(':status', $agendamento->getStatus());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function update(Agendamento $agendamento): string
+    public function alterar(Agendamento $agendamento): bool
     {
         $sql = "UPDATE agendamentos SET cliente_id = :cliente_id, servico_id = :servico_id, data = :data,
                 horario = :horario, duracao = :duracao, status = :status WHERE id = :id";
@@ -42,23 +41,21 @@ class AgendamentoDAO
         $stmt->bindParam(':horario', $agendamento->getHorario());
         $stmt->bindParam(':duracao', $agendamento->getDuracao());
         $stmt->bindParam(':status', $agendamento->getStatus());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function delete(int $id): string
+    public function excluir(int $id): bool
     {
         $sql = "DELETE FROM agendamentos WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function getById(int $id): ?Agendamento
+    public function buscar(int $id): ?Agendamento
     {
         $sql = "SELECT * FROM agendamentos WHERE id = :id";
 
@@ -89,7 +86,7 @@ class AgendamentoDAO
      *
      * @return Agendamento[]
      */
-    public function getAll(): array
+    public function listarTudo(): array
     {
         $sql = "SELECT * FROM agendamentos";
 

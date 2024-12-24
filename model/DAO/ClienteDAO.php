@@ -12,7 +12,7 @@ class ClienteDAO
         $this->connection = Connection::getConnection();
     }
 
-    public function insert(Cliente $client): string
+    public function inserir(Cliente $client): bool
     {
         $sql = "INSERT INTO clientes (nome, cpf, dt_nasc, whatsapp, logradouro, num, bairro)
                 VALUES (:nome, :cpf, :dt_nasc, :whatsapp, :logradouro, :num, :bairro)";
@@ -25,12 +25,11 @@ class ClienteDAO
         $stmt->bindParam(':logradouro', $client->getLogradouro());
         $stmt->bindParam(':num', $client->getNum());
         $stmt->bindParam(':bairro', $client->getBairro());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function update(Cliente $client): string
+    public function alterar(Cliente $client): bool
     {
         $sql = "UPDATE clientes SET nome = :nome, cpf = :cpf, dt_nasc = :dt_nasc, whatsapp = :whatsapp,
                 logradouro = :logradouro, num = :num, bairro = :bairro WHERE id = :id";
@@ -44,23 +43,21 @@ class ClienteDAO
         $stmt->bindParam(':logradouro', $client->getLogradouro());
         $stmt->bindParam(':num', $client->getNum());
         $stmt->bindParam(':bairro', $client->getBairro());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function delete(int $id): string
+    public function excluir(int $id): bool
     {
         $sql = "DELETE FROM clientes WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function getById(int $id): ?Cliente
+    public function buscar(int $id): ?Cliente
     {
         $sql = "SELECT * FROM clientes WHERE id = :id";
 
@@ -92,7 +89,7 @@ class ClienteDAO
      *
      * @return Cliente[]
      */
-    public function getAll(): array
+    public function listarTudo(): array
     {
         $sql = "SELECT * FROM clientes";
 

@@ -12,7 +12,7 @@ class ServicoDAO
         $this->connection = Connection::getConnection();
     }
 
-    public function insert(Servico $servico): string
+    public function inserir(Servico $servico): bool
     {
         $sql = "INSERT INTO servicos (nome, valor, descricao) VALUES (:nome, :valor, :descricao)";
 
@@ -20,12 +20,11 @@ class ServicoDAO
         $stmt->bindParam(':nome', $servico->getNome());
         $stmt->bindParam(':valor', $servico->getValor());
         $stmt->bindParam(':descricao', $servico->getDescricao());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function update(Servico $servico): string
+    public function alterar(Servico $servico): bool
     {
         $sql = "UPDATE servicos SET nome = :nome, valor = :valor, descricao = :descricao WHERE id = :id";
 
@@ -34,23 +33,21 @@ class ServicoDAO
         $stmt->bindParam(':nome', $servico->getNome());
         $stmt->bindParam(':valor', $servico->getValor());
         $stmt->bindParam(':descricao', $servico->getDescricao());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function delete(int $id): string
+    public function excluir(int $id): bool
     {
         $sql = "DELETE FROM servicos WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function getById(int $id): ?Servico
+    public function buscar(int $id): ?Servico
     {
         $sql = "SELECT * FROM servicos WHERE id = :id";
 
@@ -78,7 +75,7 @@ class ServicoDAO
      *
      * @return Servico[]
      */
-    public function getAll(): array
+    public function listarTudo(): array
     {
         $sql = "SELECT * FROM servicos";
 

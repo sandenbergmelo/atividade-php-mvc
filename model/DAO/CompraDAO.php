@@ -12,7 +12,7 @@ class CompraDAO
         $this->connection = Connection::getConnection();
     }
 
-    public function insert(Compra $compra): string
+    public function inserir(Compra $compra): bool
     {
         $sql = "INSERT INTO compras (cliente_id, produto_id, data, horario, qtd)
                 VALUES (:cliente_id, :produto_id, :data, :horario, :qtd)";
@@ -23,12 +23,11 @@ class CompraDAO
         $stmt->bindParam(':data', $compra->getData());
         $stmt->bindParam(':horario', $compra->getHorario());
         $stmt->bindParam(':qtd', $compra->getQtd());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function update(Compra $compra): string
+    public function alterar(Compra $compra): bool
     {
         $sql = "UPDATE compras SET cliente_id = :cliente_id, produto_id = :produto_id, data = :data,
                 horario = :horario, qtd = :qtd WHERE id = :id";
@@ -40,23 +39,21 @@ class CompraDAO
         $stmt->bindParam(':data', $compra->getData());
         $stmt->bindParam(':horario', $compra->getHorario());
         $stmt->bindParam(':qtd', $compra->getQtd());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function delete(int $id): string
+    public function excluir(int $id): bool
     {
         $sql = "DELETE FROM compras WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function getById(int $id): ?Compra
+    public function buscar(int $id): ?Compra
     {
         $sql = "SELECT * FROM compras WHERE id = :id";
 
@@ -81,7 +78,7 @@ class CompraDAO
         return null;
     }
 
-    public function getAll(): array
+    public function listarTudo(): array
     {
         $sql = "SELECT * FROM compras";
 

@@ -18,7 +18,7 @@ class ServicoController
 
     public function index()
     {
-        $servicos = $this->servicoDAO->getAll();
+        $servicos = $this->servicoDAO->listarTudo();
         $_SESSION['servicos'] = $servicos;
 
         header("Location: ../view/servico/mostrar_tudo.php");
@@ -31,7 +31,7 @@ class ServicoController
 
     public function show(int $id)
     {
-        $servico = $this->servicoDAO->getById($id);
+        $servico = $this->servicoDAO->buscar($id);
         $_SESSION['servico'] = $servico;
 
         header("Location: ../view/servico/mostrar_registro.php?id=$id");
@@ -57,9 +57,9 @@ class ServicoController
         $this->servico->setValor($valor);
         $this->servico->setDescricao($descricao);
 
-        $resp = $this->servicoDAO->insert($this->servico);
+        $resp = $this->servicoDAO->inserir($this->servico);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao inserir serviço!';
             return;
         }
@@ -83,9 +83,9 @@ class ServicoController
         $this->servico->setValor($valor);
         $this->servico->setDescricao($descricao);
 
-        $resp = $this->servicoDAO->update($this->servico);
+        $resp = $this->servicoDAO->alterar($this->servico);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao atualizar serviço!';
             return;
         }
@@ -95,9 +95,9 @@ class ServicoController
 
     public function delete(int $id)
     {
-        $resp = $this->servicoDAO->delete($id);
+        $resp = $this->servicoDAO->excluir($id);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao deletar serviço!';
             return;
         }

@@ -18,7 +18,7 @@ class AgendamentoController
 
     public function index()
     {
-        $agendamentos = $this->agendamentoDAO->getAll();
+        $agendamentos = $this->agendamentoDAO->listarTudo();
         $_SESSION['agendamentos'] = $agendamentos;
 
         header("Location: ../view/agendamento/mostrar_tudo.php");
@@ -31,7 +31,7 @@ class AgendamentoController
 
     public function show(int $id)
     {
-        $agendamento = $this->agendamentoDAO->getById($id);
+        $agendamento = $this->agendamentoDAO->buscar($id);
         $_SESSION['agendamento'] = $agendamento;
 
         header("Location: ../view/agendamento/mostrar_registro.php?id=$id");
@@ -63,9 +63,9 @@ class AgendamentoController
         $this->agendamento->setDuracao($duracao);
         $this->agendamento->setStatus($status);
 
-        $resp = $this->agendamentoDAO->insert($this->agendamento);
+        $resp = $this->agendamentoDAO->inserir($this->agendamento);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao inserir agendamento!';
             return;
         }
@@ -95,9 +95,9 @@ class AgendamentoController
         $this->agendamento->setDuracao($duracao);
         $this->agendamento->setStatus($status);
 
-        $resp = $this->agendamentoDAO->update($this->agendamento);
+        $resp = $this->agendamentoDAO->alterar($this->agendamento);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao atualizar agendamento!';
             return;
         }
@@ -107,9 +107,9 @@ class AgendamentoController
 
     public function delete(int $id)
     {
-        $resp = $this->agendamentoDAO->delete($id);
+        $resp = $this->agendamentoDAO->excluir($id);
 
-        if ($resp !== 'ok') {
+        if (!$resp) {
             echo 'Erro ao deletar agendamento!';
             return;
         }

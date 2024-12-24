@@ -12,7 +12,7 @@ class ProdutoDAO
         $this->connection = Connection::getConnection();
     }
 
-    public function insert(Produto $produto): string
+    public function inserir(Produto $produto): bool
     {
         $sql = "INSERT INTO produtos (nome, valor, marca, categoria) VALUES (:nome, :valor, :marca, :categoria)";
 
@@ -21,12 +21,11 @@ class ProdutoDAO
         $stmt->bindParam(':valor', $produto->getValor());
         $stmt->bindParam(':marca', $produto->getMarca());
         $stmt->bindParam(':categoria', $produto->getCategoria());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function update(Produto $produto): string
+    public function alterar(Produto $produto): bool
     {
         $sql = "UPDATE produtos SET nome = :nome, valor = :valor, marca = :marca, categoria = :categoria WHERE id = :id";
 
@@ -36,23 +35,21 @@ class ProdutoDAO
         $stmt->bindParam(':valor', $produto->getValor());
         $stmt->bindParam(':marca', $produto->getMarca());
         $stmt->bindParam(':categoria', $produto->getCategoria());
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function delete(int $id): string
+    public function excluir(int $id): bool
     {
         $sql = "DELETE FROM produtos WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->execute();
 
-        return 'ok';
+        return $stmt->execute();
     }
 
-    public function getById(int $id): ?Produto
+    public function buscar(int $id): ?Produto
     {
         $sql = "SELECT * FROM produtos WHERE id = :id";
 
@@ -81,7 +78,7 @@ class ProdutoDAO
      *
      * @return Produto[]
      */
-    public function getAll(): array
+    public function listarTudo(): array
     {
         $sql = "SELECT * FROM produtos";
 
