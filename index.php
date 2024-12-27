@@ -1,30 +1,47 @@
 <?php
 
-
 function start()
 {
     $class = $_GET['classe'] ?? 'Home';
     $method = $_GET['metodo'] ?? 'index';
     $id = $_GET['id'] ?? null;
 
-    $class = $class . 'Controller';
+    $class = ucfirst($class) . 'Controller';
 
-    include_once __DIR__ . '/controller/' . $class . ".php";
+    $file = __DIR__ . '/controller/' . $class . '.php';
 
-    $controller = new $class();
+    try {
+        if (!file_exists($file)) {
+            throw new Exception("Controlador '$class' não encontrado.");
+        }
 
-    if ($id) {
-        $controller->$method($id);
-        return;
+        include_once $file;
+
+        if (!class_exists($class)) {
+            throw new Exception("Classe '$class' não encontrada.");
+        }
+
+        $controller = new $class();
+
+        if (!method_exists($controller, $method)) {
+            throw new Exception("Método '$method' não encontrado na classe '$class'.");
+        }
+
+        if ($id) {
+            $controller->$method($id);
+            return;
+        }
+
+        $controller->$method();
+    } catch (Exception $e) {
+        echo 'Erro: ' . $e->getMessage();
     }
-
-    $controller->$method();
 }
 
 start();
 
 // http://localhost:3000
-// http://localhost:3000/index.php?classe=Client&metodo=index
-// http://localhost:3000/index.php?classe=Client&metodo=create
-// http://localhost:3000/index.php?classe=Client&metodo=store
-// http://localhost:3000/index.php?classe=Client&metodo=edit&id=1
+// http://localhost:3000/index.php?classe=Cliente&metodo=index
+// http://localhost:3000/index.php?classe=Cliente&metodo=create
+// http://localhost:3000/index.php?classe=Cliente&metodo=show&id=1
+// http://localhost:3000/index.php?classe=Cliente&metodo=edit&id=1
