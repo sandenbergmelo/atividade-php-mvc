@@ -46,11 +46,12 @@ class ClienteController
     {
         $nome = $_POST['nome'] ?? null;
         $cpf = $_POST['cpf'] ?? null;
-        $dt_nasc = $_POST['dt_nasc'] ?? null;
+        $dt_nasc = $_POST['dtNasc'] ?? null;
         $whatsapp = $_POST['whatsapp'] ?? null;
         $logradouro = $_POST['logradouro'] ?? null;
         $num = $_POST['num'] ?? null;
         $bairro = $_POST['bairro'] ?? null;
+
 
         if (!$nome || !$cpf || !$dt_nasc) {
             echo 'Preencha todos os campos obrigatórios!';

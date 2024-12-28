@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+main {
+  margin: 2em auto;
+  width: 90%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+h1 {
+  background-color: #007BFF;
+  color: white;
+  padding: 1em;
+  margin-bottom: 2em;
+  font-size: 2em;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: #343A40;
+  color: white;
+}
+
+thead th {
+  padding: 1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+tbody td {
+  padding: 0.8em;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+tbody td a {
+  margin: 0 0.2em;
+  font-size: 0.9em;
+}
+
+tbody td a:hover {
+  text-decoration: underline;
+}
+
+/* Botão de editar */
+tbody td a.editar {
+  color: #696908;
+}
+
+tbody td a.editar:hover {
+  color: #575a0d;
+}
+
+/* Botão de excluir */
+tbody td a.excluir {
+  color: #dc3545;
+}
+
+tbody td a.excluir:hover {
+  color: #bd2130;
+}

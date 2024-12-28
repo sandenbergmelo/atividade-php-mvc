@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  background-color: #007BFF;
+  color: white;
+  padding: 1rem;
+  font-size: 2rem;
+}
+
+nav {
+  background-color: #343A40;
+  padding: 1rem 0;
+  color: white;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  position: relative;
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+nav ul li:hover>a {
+  background-color: #495057;
+  border-radius: 5px;
+}
+
+/* Submenus */
+nav ul li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #495057;
+  list-style-type: none;
+  min-width: 150px;
+  border-radius: 5px;
+}
+
+nav ul li:hover ul {
+  display: block;
+}
+
+nav ul li ul li {
+  margin: 0;
+}
+
+nav ul li ul li a {
+  padding: 0.5rem 1rem;
+  color: white;
+}
+
+nav ul li ul li a:hover {
+  background-color: #007BFF;
+  border-radius: 5px;
+}
+
+/* Links */
+a {
+  transition: background-color 0.3s, color 0.3s;
+}

@@ -1,0 +1,67 @@
+/* Estilo geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+main {
+  margin: 2em auto;
+  width: 90%;
+  max-width: 40em;
+  background-color: white;
+  padding: 2em;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #007BFF;
+  margin-bottom: 1.5em;
+  font-size: 2em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+input {
+  padding: 0.8em;
+  margin-bottom: 1.5em;
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #007BFF;
+  outline: none;
+  box-shadow: 0 0 0.3em rgba(0, 123, 255, 0.5);
+}
+
+button {
+  padding: 0.8em;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 0.3em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #218838;
+}
