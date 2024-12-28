@@ -18,13 +18,22 @@ class ClienteDAO
                 VALUES (:nome, :cpf, :dt_nasc, :whatsapp, :logradouro, :num, :bairro)";
 
         $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':nome', $client->getNome());
-        $stmt->bindParam(':cpf', $client->getCpf());
-        $stmt->bindParam(':dt_nasc', $client->getDtNasc());
-        $stmt->bindParam(':whatsapp', $client->getWhatsapp());
-        $stmt->bindParam(':logradouro', $client->getLogradouro());
-        $stmt->bindParam(':num', $client->getNum());
-        $stmt->bindParam(':bairro', $client->getBairro());
+
+        $nome = $client->getNome();
+        $cpf = $client->getCpf();
+        $dtNasc = $client->getDtNasc();
+        $whatsapp = $client->getWhatsapp();
+        $logradouro = $client->getLogradouro();
+        $num = $client->getNum();
+        $bairro = $client->getBairro();
+
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':cpf', $cpf);
+        $stmt->bindParam(':dt_nasc', $dtNasc);
+        $stmt->bindParam(':whatsapp', $whatsapp);
+        $stmt->bindParam(':logradouro', $logradouro);
+        $stmt->bindParam(':num', $num);
+        $stmt->bindParam(':bairro', $bairro);
 
         return $stmt->execute();
     }
@@ -35,14 +44,24 @@ class ClienteDAO
                 logradouro = :logradouro, num = :num, bairro = :bairro WHERE id = :id";
 
         $stmt = $this->connection->prepare($sql);
-        $stmt->bindParam(':id', $client->getId());
-        $stmt->bindParam(':nome', $client->getNome());
-        $stmt->bindParam(':cpf', $client->getCpf());
-        $stmt->bindParam(':dt_nasc', $client->getDtNasc());
-        $stmt->bindParam(':whatsapp', $client->getWhatsapp());
-        $stmt->bindParam(':logradouro', $client->getLogradouro());
-        $stmt->bindParam(':num', $client->getNum());
-        $stmt->bindParam(':bairro', $client->getBairro());
+
+        $id = $client->getId();
+        $nome = $client->getNome();
+        $cpf = $client->getCpf();
+        $dtNasc = $client->getDtNasc();
+        $whatsapp = $client->getWhatsapp();
+        $logradouro = $client->getLogradouro();
+        $num = $client->getNum();
+        $bairro = $client->getBairro();
+
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':cpf', $cpf);
+        $stmt->bindParam(':dt_nasc', $dtNasc);
+        $stmt->bindParam(':whatsapp', $whatsapp);
+        $stmt->bindParam(':logradouro', $logradouro);
+        $stmt->bindParam(':num', $num);
+        $stmt->bindParam(':bairro', $bairro);
 
         return $stmt->execute();
     }

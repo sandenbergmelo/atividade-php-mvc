@@ -5,6 +5,7 @@
         "descricao",
         "duracao",
         "ERRMODE",
+        "formatacoes",
         "horario",
         "metodo",
         "nasc",

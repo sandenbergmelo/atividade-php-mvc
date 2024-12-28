@@ -3,11 +3,11 @@
 include __DIR__ . '/Connection.php';
 
 $clientes = [
-    ['nome' => 'Leonardo da Vinci', 'cpf' => '123.456.789-00', 'dt_nasc' => '1452-04-15', 'whatsapp' => '1234567890', 'logradouro' => 'Rua A', 'num' => '1', 'bairro' => 'Centro'],
-    ['nome' => 'Michelangelo Buonarroti', 'cpf' => '123.456.789-01', 'dt_nasc' => '1475-03-06', 'whatsapp' => '1234567891', 'logradouro' => 'Rua B', 'num' => '2', 'bairro' => 'Centro'],
-    ['nome' => 'Rafael Sanzio', 'cpf' => '123.456.789-02', 'dt_nasc' => '1483-04-06', 'whatsapp' => '1234567892', 'logradouro' => 'Rua C', 'num' => '3', 'bairro' => 'Centro'],
-    ['nome' => 'Donatello di Niccolò di Betto Bardi', 'cpf' => '123.456.789-03', 'dt_nasc' => '1386-09-13', 'whatsapp' => '1234567893', 'logradouro' => 'Rua D', 'num' => '4', 'bairro' => 'Centro'],
-    ['nome' => 'Sandro Botticelli', 'cpf' => '123.456.789-04', 'dt_nasc' => '1445-03-01', 'whatsapp' => '1234567894', 'logradouro' => 'Rua E', 'num' => '5', 'bairro' => 'Centro']
+    ['nome' => 'Leonardo da Vinci', 'cpf' => '12345678900', 'dt_nasc' => '1452-04-15', 'whatsapp' => '12934567890', 'logradouro' => 'Rua A', 'num' => '1', 'bairro' => 'Centro'],
+    ['nome' => 'Michelangelo Buonarroti', 'cpf' => '12345678901', 'dt_nasc' => '1475-03-06', 'whatsapp' => '12934567891', 'logradouro' => 'Rua B', 'num' => '2', 'bairro' => 'Centro'],
+    ['nome' => 'Rafael Sanzio', 'cpf' => '12345678902', 'dt_nasc' => '1483-04-06', 'whatsapp' => '12934567892', 'logradouro' => 'Rua C', 'num' => '3', 'bairro' => 'Centro'],
+    ['nome' => 'Donatello di Niccolò di Betto Bardi', 'cpf' => '123.456.789-03', 'dt_nasc' => '1386-09-13', 'whatsapp' => '12934567893', 'logradouro' => 'Rua D', 'num' => '4', 'bairro' => 'Centro'],
+    ['nome' => 'Sandro Botticelli', 'cpf' => '12345678904', 'dt_nasc' => '1445-03-01', 'whatsapp' => '12934567894', 'logradouro' => 'Rua E', 'num' => '5', 'bairro' => 'Centro']
 ];
 
 $servicos = [
@@ -55,62 +55,10 @@ try {
 
     $conn->exec("SET FOREIGN_KEY_CHECKS = 1");
 
-    $conn->exec("CREATE TABLE IF NOT EXISTS clientes (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255) NOT NULL,
-        cpf VARCHAR(14) NOT NULL,
-        dt_nasc DATE NOT NULL,
-        whatsapp VARCHAR(15),
-        logradouro VARCHAR(255),
-        num VARCHAR(10),
-        bairro VARCHAR(100)
-    )");
-    echo "Tabela clientes criada com sucesso\n";
+    $sql = file_get_contents(__DIR__ . '/schema.sql');
 
-    $conn->exec("CREATE TABLE IF NOT EXISTS servicos (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255) NOT NULL,
-        valor DECIMAL(10, 2) NOT NULL,
-        descricao TEXT
-    )");
-    echo "Tabela servicos criada com sucesso\n";
-
-    $conn->exec("CREATE TABLE IF NOT EXISTS produtos (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255) NOT NULL,
-        valor DECIMAL(10, 2) NOT NULL,
-        marca VARCHAR(100),
-        categoria VARCHAR(100)
-    )");
-
-    echo "Tabela produtos criada com sucesso\n";
-
-    $conn->exec("CREATE TABLE IF NOT EXISTS agendamentos (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        cliente_id INT NOT NULL,
-        servico_id INT NOT NULL,
-        data DATE NOT NULL,
-        horario TIME NOT NULL,
-        duracao INT NOT NULL,
-        status VARCHAR(50) NOT NULL,
-
-        FOREIGN KEY (cliente_id) REFERENCES clientes(id),
-        FOREIGN KEY (servico_id) REFERENCES servicos(id)
-    )");
-    echo "Tabela agendamentos criada com sucesso\n";
-
-    $conn->exec("CREATE TABLE IF NOT EXISTS compras (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        cliente_id INT NOT NULL,
-        produto_id INT NOT NULL,
-        data DATE NOT NULL,
-        horario TIME NOT NULL,
-        qtd INT NOT NULL,
-
-        FOREIGN KEY (cliente_id) REFERENCES clientes(id),
-        FOREIGN KEY (produto_id) REFERENCES produtos(id)
-    )");
-    echo "Tabela compras criada com sucesso\n";
+    $conn->exec($sql);
+    echo "Tabelas criadas com sucesso!\n";
 
     // Inserir dados na tabela clientes
     foreach ($clientes as $cliente) {
