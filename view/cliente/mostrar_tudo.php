@@ -48,14 +48,72 @@ $clientes = $_SESSION['clientes'];
                     echo "<td> $dtNasc </td>";
                     echo "<td>";
                     echo "<a class='editar' href='../../index.php?classe=Cliente&metodo=edit&id=$id'>[Editar]</a> ";
-                    echo "<a class='excluir' href='../../index.php?classe=Cliente&metodo=delete&id=$id'>[Excluir]</a>";
+                    echo "<a class='excluir' href='#' data-id='$id'>[Excluir]</a>";
                     echo "</td>";
                 }
                 ?>
             </tbody>
         </table>
-    </main>
 
+        <dialog id="modal-confirmacao">
+            <p>Deseja realmente excluir este cliente?</p>
+            <button id="sim">Sim</button>
+            <button id="cancelar">Cancelar</button>
+        </dialog>
+
+        <dialog id="modal-resposta">
+            <p>Cliente excluído com sucesso!</p>
+            <button id="ok">OK</button>
+        </dialog>
+    </main>
+    <script>
+        // Seleciona todos os botões de exclusão
+        const botoesExcluir = document.querySelectorAll('.excluir');
+
+        // Seleciona o modal de confirmação e seus botões
+        const modalConfirm = document.querySelector('#modal-confirmacao');
+        const modalConfirmSim = modalConfirm.querySelector('#modal-confirmacao #sim');
+        const modalConfirmCancel = modalConfirm.querySelector('#modal-confirmacao #cancelar');
+
+        // Seleciona o modal de resposta e seu botão
+        const modalResposta = document.querySelector('#modal-resposta');
+        const modalRespostaOk = modalResposta.querySelector('#modal-resposta #ok');
+
+        // Adiciona evento de clique para cancelar a exclusão e fechar o modal de confirmação
+        modalConfirmCancel.addEventListener('click', () => modalConfirm.close());
+
+        // Adiciona evento de clique para confirmar a exclusão
+        modalConfirmSim.addEventListener('click', () => {
+            modalConfirm.close();
+
+            // Obtém o ID do cliente a ser excluído
+            const id = modalConfirm.getAttribute('data-id').trim();
+
+            // Faz uma requisição para excluir o cliente
+            fetch(`../../index.php?classe=Cliente&metodo=delete&id=${id}`)
+                .then(() => modalResposta.showModal()); // Mostra o modal de resposta após a exclusão
+        });
+
+        // Adiciona evento para redirecionar após fechar o modal de resposta
+        modalResposta.addEventListener('close', () => {
+            window.location.href = `../../index.php?classe=Cliente&metodo=index`;
+        });
+
+        modalRespostaOk.addEventListener('click', () => {
+            modalResposta.close();
+        });
+
+        // Adiciona evento de clique para cada botão de exclusão
+        botoesExcluir.forEach((botao) => {
+            botao.addEventListener('click', () => {
+                const id = botao.getAttribute('data-id').trim();
+
+                // Define o ID no modal de confirmação e exibe o modal
+                modalConfirm.setAttribute('data-id', id);
+                modalConfirm.showModal();
+            });
+        });
+    </script>
 </body>
 
 </html>
