@@ -28,7 +28,42 @@
             <input type="text" name="bairro" id="bairro" required>
             <button type="submit">Salvar</button>
         </form>
+        <dialog>
+            <p>Cliente inserido com sucesso!</p>
+            <button>OK</button>
+        </dialog>
     </main>
+    <script>
+        // Seleciona o formulário, o diálogo e o botão dentro do diálogo
+        const form = document.querySelector('form');
+        const dialog = document.querySelector('dialog');
+        const dialogButton = dialog.querySelector('button');
+
+        // Adiciona evento de submissão ao formulário
+        form.addEventListener('submit', (event) => {
+            // Previne o comportamento padrão de submissão do formulário
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const url = form.getAttribute('action');
+
+            // Faz uma requisição POST com os dados do formulário
+            fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(data => dialog.showModal()); // Mostra o diálogo após a submissão
+        });
+
+        dialogButton.addEventListener('click', () => {
+            dialog.close();
+        });
+
+        // Adiciona evento para redirecionar após fechar o diálogo
+        dialog.addEventListener('close', () => {
+            window.location.href = '../../index.php?classe=Cliente&metodo=index';
+        });
+    </script>
 </body>
 
 </html>

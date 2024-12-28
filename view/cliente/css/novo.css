@@ -65,3 +65,17 @@ button {
 button:hover {
   background-color: #218838;
 }
+
+dialog {
+  width: 300px;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 15em;
+  text-align: center;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
