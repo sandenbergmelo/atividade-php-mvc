@@ -39,6 +39,9 @@ class ClienteController
 
     public function edit(int $id)
     {
+        $cliente = $this->clienteDAO->buscar($id);
+        $_SESSION['cliente'] = $cliente;
+
         header("Location: ../view/cliente/editar.php?id=$id");
     }
 
@@ -80,7 +83,7 @@ class ClienteController
     {
         $nome = $_POST['nome'] ?? null;
         $cpf = $_POST['cpf'] ?? null;
-        $dt_nasc = $_POST['dt_nasc'] ?? null;
+        $dt_nasc = $_POST['dtNasc'] ?? null;
         $whatsapp = $_POST['whatsapp'] ?? null;
         $logradouro = $_POST['logradouro'] ?? null;
         $num = $_POST['num'] ?? null;
