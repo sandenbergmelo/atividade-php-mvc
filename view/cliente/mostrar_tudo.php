@@ -23,6 +23,7 @@ $clientes = $_SESSION['clientes'];
     <main>
         <h1>Lista de Clientes</h1>
         <button onclick="window.location.href='../../index.php?classe=Cliente&metodo=create'">Novo Cliente</button>
+        <a href="../../index.php?classe=Cliente&metodo=index" class="reload">⟳</a>
         <table style="margin: auto;">
             <thead>
                 <tr>

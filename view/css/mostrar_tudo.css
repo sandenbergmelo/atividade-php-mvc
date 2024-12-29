@@ -45,6 +45,26 @@ button:hover {
   background-color: #218838;
 }
 
+a.reload {
+  color: white;
+  padding: 0 0.26em;
+  background-color: #007BFF;
+  font-size: 1.3em;
+  font-weight: bolder;
+  border-radius: 50%;
+  float: right;
+}
+
+a.reload:hover {
+  color: white;
+  background-color: #0056b3;
+}
+
+a.reload:active {
+  color: white;
+  background-color: #004286;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
