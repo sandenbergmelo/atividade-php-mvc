@@ -6,7 +6,7 @@ $clientes = [
     ['nome' => 'Leonardo da Vinci', 'cpf' => '12345678900', 'dt_nasc' => '1452-04-15', 'whatsapp' => '12934567890', 'logradouro' => 'Rua A', 'num' => '1', 'bairro' => 'Centro'],
     ['nome' => 'Michelangelo Buonarroti', 'cpf' => '12345678901', 'dt_nasc' => '1475-03-06', 'whatsapp' => '12934567891', 'logradouro' => 'Rua B', 'num' => '2', 'bairro' => 'Centro'],
     ['nome' => 'Rafael Sanzio', 'cpf' => '12345678902', 'dt_nasc' => '1483-04-06', 'whatsapp' => '12934567892', 'logradouro' => 'Rua C', 'num' => '3', 'bairro' => 'Centro'],
-    ['nome' => 'Donatello di Niccolò di Betto Bardi', 'cpf' => '123.456.789-03', 'dt_nasc' => '1386-09-13', 'whatsapp' => '12934567893', 'logradouro' => 'Rua D', 'num' => '4', 'bairro' => 'Centro'],
+    ['nome' => 'Donatello di Niccolò di Betto Bardi', 'cpf' => '12345678903', 'dt_nasc' => '1386-09-13', 'whatsapp' => '12934567893', 'logradouro' => 'Rua D', 'num' => '4', 'bairro' => 'Centro'],
     ['nome' => 'Sandro Botticelli', 'cpf' => '12345678904', 'dt_nasc' => '1445-03-01', 'whatsapp' => '12934567894', 'logradouro' => 'Rua E', 'num' => '5', 'bairro' => 'Centro']
 ];
 
