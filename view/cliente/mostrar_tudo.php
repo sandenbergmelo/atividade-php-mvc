@@ -23,6 +23,7 @@ $clientes = $_SESSION['clientes'];
     <main>
         <h1>Lista de Clientes</h1>
         <button onclick="window.location.href='../../index.php?classe=Cliente&metodo=create'">Novo Cliente</button>
+        <a href="../../index.php?classe=Cliente&metodo=index" class="reload">⟳</a>
         <table style="margin: auto;">
             <thead>
                 <tr>
@@ -55,9 +56,11 @@ $clientes = $_SESSION['clientes'];
             </tbody>
         </table>
 
+        <button class="home" onclick="window.location.href='../../index.php'">Home</button>
+
         <dialog id="modal-confirmacao">
             <p>Deseja realmente excluir este cliente?</p>
-            <button id="sim">Sim</button>
+            <button id="excluir">Excluir</button>
             <button id="cancelar">Cancelar</button>
         </dialog>
 
@@ -72,7 +75,7 @@ $clientes = $_SESSION['clientes'];
 
         // Seleciona o modal de confirmação e seus botões
         const modalConfirm = document.querySelector('#modal-confirmacao');
-        const modalConfirmSim = modalConfirm.querySelector('#modal-confirmacao #sim');
+        const modalConfirmExcluir = modalConfirm.querySelector('#modal-confirmacao #excluir');
         const modalConfirmCancel = modalConfirm.querySelector('#modal-confirmacao #cancelar');
 
         // Seleciona o modal de resposta e seu botão
@@ -83,7 +86,7 @@ $clientes = $_SESSION['clientes'];
         modalConfirmCancel.addEventListener('click', () => modalConfirm.close());
 
         // Adiciona evento de clique para confirmar a exclusão
-        modalConfirmSim.addEventListener('click', () => {
+        modalConfirmExcluir.addEventListener('click', () => {
             modalConfirm.close();
 
             // Obtém o ID do cliente a ser excluído
