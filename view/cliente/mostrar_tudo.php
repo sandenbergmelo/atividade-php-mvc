@@ -16,7 +16,7 @@ $clientes = $_SESSION['clientes'];
 <head>
     <meta charset=”utf8”>
     <title>Lista de Clientes</title>
-    <link rel="stylesheet" href="css/mostrar_tudo.css">
+    <link rel="stylesheet" href="../css/mostrar_tudo.css">
 </head>
 
 <body>

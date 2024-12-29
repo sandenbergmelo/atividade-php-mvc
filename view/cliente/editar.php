@@ -24,7 +24,7 @@ $bairro = htmlspecialchars($cliente->getBairro());
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atualizar informações do Cliente</title>
-    <link rel="stylesheet" href="css/novo.css">
+    <link rel="stylesheet" href="../css/novo-editar.css">
 </head>
 
 <body>
