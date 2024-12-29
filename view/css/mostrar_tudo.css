@@ -118,11 +118,20 @@ dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-dialog button#cancelar {
+dialog button#excluir {
   background-color: #dc3545;
   color: white;
 }
 
-dialog button#cancelar:hover {
+dialog button#excluir:hover {
   background-color: #bd2130;
+}
+
+dialog button#cancelar {
+  background-color: #6c757d;
+  color: white;
+}
+
+dialog button#cancelar:hover {
+  background-color: #545b62;
 }
