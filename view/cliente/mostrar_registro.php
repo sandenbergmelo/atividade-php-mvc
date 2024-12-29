@@ -19,29 +19,32 @@ $cliente = $_SESSION['cliente'];
 </head>
 
 <body>
-    <?php
+    <main>
+        <?php
+        $id = $cliente->getId();
+        $nome = $cliente->getNome();
+        $cpf = formatarCpf($cliente->getCpf());
+        $dtNasc = formatarData($cliente->getDtNasc());
+        $whatsapp = formatarTelefone($cliente->getWhatsapp());
+        $logradouro = $cliente->getLogradouro();
+        $numero = $cliente->getNum();
+        $bairro = $cliente->getBairro();
+        echo "<h1>Mostrando dados de $nome</h1>";
+        echo "<p>Id: $id</p>";
+        echo "<p>Nome: $nome</p>";
+        echo "<p>CPF: $cpf</p>";
+        echo "<p>Data de Nascimento: $dtNasc</p>";
+        echo "<p>Whatsapp: $whatsapp</p>";
+        echo "<p>Logradouro: $logradouro</p>";
+        echo "<p>Número: $numero</p>";
+        echo "<p>Bairro: $bairro</p>";
+        ?>
+    </main>
 
-    $id = $cliente->getId();
-    $nome = $cliente->getNome();
-    $cpf = formatarCpf($cliente->getCpf());
-    $dtNasc = formatarData($cliente->getDtNasc());
-    $whatsapp = formatarTelefone($cliente->getWhatsapp());
-    $logradouro = $cliente->getLogradouro();
-    $numero = $cliente->getNum();
-    $bairro = $cliente->getBairro();
-
-    echo "<h1>Mostrando dados de $nome</h1>";
-    echo "<p>Id: $id</p>";
-    echo "<p>Nome: $nome</p>";
-    echo "<p>CPF: $cpf</p>";
-    echo "<p>Data de Nascimento: $dtNasc</p>";
-    echo "<p>Whatsapp: $whatsapp</p>";
-    echo "<p>Logradouro: $logradouro</p>";
-    echo "<p>Número: $numero</p>";
-    echo "<p>Bairro: $bairro</p>";
-    ?>
-
-    <button onclick="window.location.href='../../index.php?classe=Cliente&metodo=index'">Voltar</button>
+    <footer>
+        <button onclick="window.location.href='../../index.php?classe=Cliente&metodo=index'">Voltar</button>
+        <button class="home" onclick="window.location.href='../../index.php'">Home</button>
+    </footer>
 </body>
 
 </html>

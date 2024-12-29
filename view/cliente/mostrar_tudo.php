@@ -55,6 +55,8 @@ $clientes = $_SESSION['clientes'];
             </tbody>
         </table>
 
+        <button class="home" onclick="window.location.href='../../index.php'">Home</button>
+
         <dialog id="modal-confirmacao">
             <p>Deseja realmente excluir este cliente?</p>
             <button id="excluir">Excluir</button>
