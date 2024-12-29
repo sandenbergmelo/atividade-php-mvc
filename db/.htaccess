@@ -1,7 +1,6 @@
 php_value display_errors On
 IndexIgnore *
 
-<!-- Remover o acesso a arquivos da pasta db exceto o arquivo seed.php -->
 <FilesMatch "^(?!seed\.php).*$">
     Require all denied
 </FilesMatch>
