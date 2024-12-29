@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <h1>Bem-vindo ao Sistema de Gerenciamento</h1>
+    <header>
+        <h1>Bem-vindo ao Sistema de Gerenciamento</h1>
+        <a id="admin" href="../../admin.php">Admin</a>
+    </header>
     <nav>
         <ul>
             <li>Clientes
