@@ -39,9 +39,3 @@ function start()
 }
 
 start();
-
-// http://localhost:3000
-// http://localhost:3000/index.php?classe=Cliente&metodo=index
-// http://localhost:3000/index.php?classe=Cliente&metodo=create
-// http://localhost:3000/index.php?classe=Cliente&metodo=show&id=1
-// http://localhost:3000/index.php?classe=Cliente&metodo=edit&id=1
