@@ -2,14 +2,20 @@
 
 include_once __DIR__ . '/../../db/Connection.php';
 include_once __DIR__ . '/../Agendamento.php';
+include_once __DIR__ . '/ClienteDAO.php';
+include_once __DIR__ . '/ServicoDAO.php';
 
 class AgendamentoDAO
 {
     private PDO $connection;
+    private ClienteDAO $clienteDAO;
+    private ServicoDAO $servicoDAO;
 
     public function __construct()
     {
         $this->connection = Connection::getConnection();
+        $this->clienteDAO = new ClienteDAO();
+        $this->servicoDAO = new ServicoDAO();
     }
 
     public function inserir(Agendamento $agendamento): bool
@@ -64,8 +70,10 @@ class AgendamentoDAO
         $stmt->execute();
 
         $agendamentoData = $stmt->fetch(PDO::FETCH_ASSOC);
+        $cliente = $this->clienteDAO->buscar($agendamentoData['cliente_id']);
+        $servico = $this->servicoDAO->buscar($agendamentoData['servico_id']);
 
-        if ($agendamentoData) {
+        if ($agendamentoData && $cliente && $servico) {
             $agendamento = new Agendamento();
             $agendamento->setId($agendamentoData['id']);
             $agendamento->setClienteId($agendamentoData['cliente_id']);
@@ -74,6 +82,8 @@ class AgendamentoDAO
             $agendamento->setHorario($agendamentoData['horario']);
             $agendamento->setDuracao($agendamentoData['duracao']);
             $agendamento->setStatus($agendamentoData['status']);
+            $agendamento->setCliente($cliente);
+            $agendamento->setServico($servico);
 
             return $agendamento;
         }
@@ -98,6 +108,9 @@ class AgendamentoDAO
         $agendamentos = [];
 
         foreach ($agendamentosData as $agendamentoData) {
+            $cliente = $this->clienteDAO->buscar($agendamentoData['cliente_id']);
+            $servico = $this->servicoDAO->buscar($agendamentoData['servico_id']);
+
             $agendamento = new Agendamento();
             $agendamento->setId($agendamentoData['id']);
             $agendamento->setClienteId($agendamentoData['cliente_id']);
@@ -106,6 +119,8 @@ class AgendamentoDAO
             $agendamento->setHorario($agendamentoData['horario']);
             $agendamento->setDuracao($agendamentoData['duracao']);
             $agendamento->setStatus($agendamentoData['status']);
+            $agendamento->setCliente($cliente);
+            $agendamento->setServico($servico);
 
             $agendamentos[] = $agendamento;
         }

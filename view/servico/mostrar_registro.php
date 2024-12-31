@@ -39,7 +39,7 @@ $servico = $_SESSION['servico'];
             <button class="excluir">Excluir</button>
         </section>
         <section>
-            <button onclick="window.location.href='../../index.php?classe=Servico&metodo=index'">Voltar</button>
+            <button onclick="window.history.back()">Voltar</button>
             <button class="home" onclick="window.location.href='../../index.php'">Home</button>
         </section>
     </footer>

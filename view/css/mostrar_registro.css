@@ -26,6 +26,18 @@ p.dado {
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
 }
 
+a {
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+
 footer {
   text-align: center;
   display: flex;

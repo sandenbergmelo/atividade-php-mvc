@@ -2,6 +2,8 @@
 
 include_once __DIR__ . '/../model/Agendamento.php';
 include_once __DIR__ . '/../model/DAO/AgendamentoDAO.php';
+include_once __DIR__ . '/../model/DAO/ClienteDAO.php';
+include_once __DIR__ . '/../model/DAO/ServicoDAO.php';
 
 session_start();
 
@@ -9,11 +11,15 @@ class AgendamentoController
 {
     private Agendamento $agendamento;
     private AgendamentoDAO $agendamentoDAO;
+    private ClienteDAO $clienteDAO;
+    private ServicoDAO $servicoDAO;
 
     public function __construct()
     {
         $this->agendamento = new Agendamento();
         $this->agendamentoDAO = new AgendamentoDAO();
+        $this->clienteDAO = new ClienteDAO();
+        $this->servicoDAO = new ServicoDAO();
     }
 
     public function index()
@@ -26,6 +32,12 @@ class AgendamentoController
 
     public function create()
     {
+        $clientes = $this->clienteDAO->listarTudo();
+        $_SESSION['clientes'] = $clientes;
+
+        $servicos = $this->servicoDAO->listarTudo();
+        $_SESSION['servicos'] = $servicos;
+
         header("Location: ../view/agendamento/novo.php");
     }
 
@@ -41,6 +53,12 @@ class AgendamentoController
     {
         $agendamento = $this->agendamentoDAO->buscar($id);
         $_SESSION['agendamento'] = $agendamento;
+
+        $clientes = $this->clienteDAO->listarTudo();
+        $_SESSION['clientes'] = $clientes;
+
+        $servicos = $this->servicoDAO->listarTudo();
+        $_SESSION['servicos'] = $servicos;
 
         header("Location: ../view/agendamento/editar.php?id=$id");
     }
