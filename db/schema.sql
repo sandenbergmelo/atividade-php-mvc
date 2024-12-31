@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS clientes (
     logradouro VARCHAR(255),
     num VARCHAR(10),
     bairro VARCHAR(100)
-);
+) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS servicos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS produtos (
     valor DECIMAL(10, 2) NOT NULL,
     marca VARCHAR(100),
     categoria VARCHAR(100)
-);
+) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS agendamentos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS agendamentos (
     status VARCHAR(50) NOT NULL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE,
     FOREIGN KEY (servico_id) REFERENCES servicos(id) ON DELETE CASCADE
-);
+) ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS compras (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,
@@ -43,4 +43,4 @@ CREATE TABLE IF NOT EXISTS compras (
     qtd INT NOT NULL,
     FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
-);
+) ENGINE = InnoDB;
