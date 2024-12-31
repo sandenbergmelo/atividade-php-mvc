@@ -1,5 +1,8 @@
 <?php
 
+include_once __DIR__ . '/Cliente.php';
+include_once __DIR__ . '/Servico.php';
+
 class Agendamento
 {
     private int $id;
@@ -9,6 +12,8 @@ class Agendamento
     private string $horario;
     private int $duracao;
     private string $status;
+    private Cliente $cliente;
+    private Servico $servico;
 
     public function __construct() {}
 
@@ -86,6 +91,30 @@ class Agendamento
     public function setStatus(string $status): self
     {
         $this->status = $status;
+        return $this;
+    }
+
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    public function setCliente(Cliente $cliente): self
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    public function getServico(): Servico
+    {
+        return $this->servico;
+    }
+
+    public function setServico(Servico $servico): self
+    {
+        $this->servico = $servico;
+
         return $this;
     }
 }
