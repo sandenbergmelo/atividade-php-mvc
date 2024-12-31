@@ -39,6 +39,9 @@ class CompraController
 
     public function edit(int $id)
     {
+        $compra = $this->compraDAO->buscar($id);
+        $_SESSION['compra'] = $compra;
+
         header("Location: ../view/compra/editar.php?id=$id");
     }
 

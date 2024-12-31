@@ -39,6 +39,9 @@ class ProdutoController
 
     public function edit(int $id)
     {
+        $produto = $this->produtoDAO->buscar($id);
+        $_SESSION['produto'] = $produto;
+
         header("Location: ../view/produto/editar.php?id=$id");
     }
 

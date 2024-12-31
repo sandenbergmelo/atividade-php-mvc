@@ -39,6 +39,9 @@ class ServicoController
 
     public function edit(int $id)
     {
+        $servico = $this->servicoDAO->buscar($id);
+        $_SESSION['servico'] = $servico;
+
         header("Location: ../view/servico/editar.php?id=$id");
     }
 

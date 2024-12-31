@@ -39,6 +39,9 @@ class AgendamentoController
 
     public function edit(int $id)
     {
+        $agendamento = $this->agendamentoDAO->buscar($id);
+        $_SESSION['agendamento'] = $agendamento;
+
         header("Location: ../view/agendamento/editar.php?id=$id");
     }
 
