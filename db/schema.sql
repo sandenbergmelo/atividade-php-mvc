@@ -40,6 +40,9 @@ CREATE TABLE IF NOT EXISTS compras (
     horario TIME NOT NULL,
     qtd INT NOT NULL
 ) ENGINE = InnoDB;
+-- FOREIGN KEYS fora dos CREATE TABLE porque o MySQL do InfinityFree só funciona assim
+-- Adicionado ON DELETE CASCADE para que, ao deletar um cliente, todos os registros relacionados a ele sejam deletados
+-- Também foi necessário explicitar a engine InnoDB, que não é a padrão do MySQL do InfinityFree, para que as FOREIGN KEYS funcionem
 ALTER TABLE agendamentos
 ADD FOREIGN KEY (cliente_id) REFERENCES clientes(id) ON DELETE CASCADE,
     ADD FOREIGN KEY (servico_id) REFERENCES servicos(id) ON DELETE CASCADE;

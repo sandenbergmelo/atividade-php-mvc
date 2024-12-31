@@ -1,4 +1,6 @@
 <?php
+include_once __DIR__ . '/Cliente.php';
+include_once __DIR__ . '/Produto.php';
 
 class Compra
 {
@@ -8,6 +10,8 @@ class Compra
     private string $data;
     private string $horario;
     private int $qtd;
+    private Cliente $cliente;
+    private Produto $produto;
 
     public function __construct() {}
 
@@ -74,6 +78,30 @@ class Compra
     public function setQtd(int $qtd): self
     {
         $this->qtd = $qtd;
+        return $this;
+    }
+
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    public function setCliente(Cliente $cliente): self
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    public function getProduto(): Produto
+    {
+        return $this->produto;
+    }
+
+    public function setProduto(Produto $produto): self
+    {
+        $this->produto = $produto;
+
         return $this;
     }
 }
