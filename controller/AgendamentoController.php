@@ -18,6 +18,7 @@ class AgendamentoController
     {
         $this->agendamento = new Agendamento();
         $this->agendamentoDAO = new AgendamentoDAO();
+
         $this->clienteDAO = new ClienteDAO();
         $this->servicoDAO = new ServicoDAO();
     }

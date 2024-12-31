@@ -2,6 +2,8 @@
 
 include_once __DIR__ . '/../model/Compra.php';
 include_once __DIR__ . '/../model/DAO/CompraDAO.php';
+include_once __DIR__ . '/../model/DAO/ClienteDAO.php';
+include_once __DIR__ . '/../model/DAO/ProdutoDAO.php';
 
 session_start();
 
@@ -9,11 +11,16 @@ class CompraController
 {
     private Compra $compra;
     private CompraDAO $compraDAO;
+    private ClienteDAO $clienteDAO;
+    private ProdutoDAO $produtoDAO;
 
     public function __construct()
     {
         $this->compra = new Compra();
         $this->compraDAO = new CompraDAO();
+
+        $this->clienteDAO = new ClienteDAO();
+        $this->produtoDAO = new ProdutoDAO();
     }
 
     public function index()
@@ -26,6 +33,12 @@ class CompraController
 
     public function create()
     {
+        $clientes = $this->clienteDAO->listarTudo();
+        $_SESSION['clientes'] = $clientes;
+
+        $produtos = $this->produtoDAO->listarTudo();
+        $_SESSION['produtos'] = $produtos;
+
         header("Location: ../view/compra/novo.php");
     }
 
@@ -41,6 +54,12 @@ class CompraController
     {
         $compra = $this->compraDAO->buscar($id);
         $_SESSION['compra'] = $compra;
+
+        $clientes = $this->clienteDAO->listarTudo();
+        $_SESSION['clientes'] = $clientes;
+
+        $produtos = $this->produtoDAO->listarTudo();
+        $_SESSION['produtos'] = $produtos;
 
         header("Location: ../view/compra/editar.php?id=$id");
     }

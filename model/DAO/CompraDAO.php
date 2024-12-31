@@ -2,14 +2,21 @@
 
 include_once __DIR__ . '/../../db/Connection.php';
 include_once __DIR__ . '/../Compra.php';
+include_once __DIR__ . '/ClienteDAO.php';
+include_once __DIR__ . '/ProdutoDAO.php';
+
 
 class CompraDAO
 {
     private PDO $connection;
+    private ClienteDAO $clienteDAO;
+    private ProdutoDAO $produtoDAO;
 
     public function __construct()
     {
         $this->connection = Connection::getConnection();
+        $this->clienteDAO = new ClienteDAO();
+        $this->produtoDAO = new ProdutoDAO();
     }
 
     public function inserir(Compra $compra): bool
@@ -62,8 +69,10 @@ class CompraDAO
         $stmt->execute();
 
         $compraData = $stmt->fetch(PDO::FETCH_ASSOC);
+        $cliente = $this->clienteDAO->buscar($compraData['cliente_id']);
+        $produto = $this->produtoDAO->buscar($compraData['produto_id']);
 
-        if ($compraData) {
+        if ($compraData && $cliente && $produto) {
             $compra = new Compra();
             $compra->setId($compraData['id']);
             $compra->setClienteId($compraData['cliente_id']);
@@ -71,6 +80,8 @@ class CompraDAO
             $compra->setData($compraData['data']);
             $compra->setHorario($compraData['horario']);
             $compra->setQtd($compraData['qtd']);
+            $compra->setCliente($cliente);
+            $compra->setProduto($produto);
 
             return $compra;
         }
@@ -90,6 +101,9 @@ class CompraDAO
         $compras = [];
 
         foreach ($comprasData as $compraData) {
+            $cliente = $this->clienteDAO->buscar($compraData['cliente_id']);
+            $produto = $this->produtoDAO->buscar($compraData['produto_id']);
+
             $compra = new Compra();
             $compra->setId($compraData['id']);
             $compra->setClienteId($compraData['cliente_id']);
@@ -97,6 +111,8 @@ class CompraDAO
             $compra->setData($compraData['data']);
             $compra->setHorario($compraData['horario']);
             $compra->setQtd($compraData['qtd']);
+            $compra->setCliente($cliente);
+            $compra->setProduto($produto);
 
             $compras[] = $compra;
         }
