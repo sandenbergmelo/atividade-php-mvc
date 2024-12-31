@@ -15,3 +15,8 @@ function formatarTelefone(string $telefone): string
 {
     return '(' . substr($telefone, 0, 2) . ') ' . substr($telefone, 2, 1) . ' ' . substr($telefone, 3, 4) . '-' . substr($telefone, 7);
 }
+
+function formatarDinheiro(float $valor): string
+{
+    return 'R$ ' . number_format($valor, 2, ',', '.');
+}

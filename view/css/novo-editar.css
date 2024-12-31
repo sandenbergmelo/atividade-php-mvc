@@ -51,6 +51,17 @@ input:focus {
   box-shadow: 0 0 0.3em rgba(0, 123, 255, 0.5);
 }
 
+textarea {
+  padding: 0.8em;
+  margin-bottom: 1.5em;
+  border: 1px solid #ddd;
+  border-radius: 0.3em;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 button {
   padding: 0.8em;
   background-color: #28a745;
