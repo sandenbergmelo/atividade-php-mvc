@@ -32,6 +32,12 @@ class AgendamentoController
 
     public function create()
     {
+        $clientes = $this->clienteDAO->listarTudo();
+        $_SESSION['clientes'] = $clientes;
+
+        $servicos = $this->servicoDAO->listarTudo();
+        $_SESSION['servicos'] = $servicos;
+
         header("Location: ../view/agendamento/novo.php");
     }
 
