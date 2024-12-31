@@ -47,7 +47,7 @@ $cliente = $_SESSION['cliente'];
             <button class="excluir">Excluir</button>
         </section>
         <section>
-            <button onclick="window.location.href='../../index.php?classe=Cliente&metodo=index'">Voltar</button>
+            <button onclick="window.history.back()">Voltar</button>
             <button class="home" onclick="window.location.href='../../index.php'">Home</button>
         </section>
     </footer>
